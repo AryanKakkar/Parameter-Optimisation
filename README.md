@@ -29,12 +29,12 @@ The dataset contains the following columns:
 - `fNames`, `fWidth`, `fSize`, `fConc`, `fConc1`, `fAsym`, `fM3Long`, `fM3Trans`, `fAlpha`, `fDist`: Numerical features
 - `Class`: Target variable with two classes (Higgs or Gamma)
 
-## Steps
+## Methodology
 
 1. **Data Loading and Exploration**:
    - The dataset is loaded from the provided URL and assigned appropriate column names.
    - Basic exploratory data analysis (EDA) is performed, including shape and missing value checks.
-   - A count plot is generated to visualize the distribution of classes.
+   - A count plot is generated to visualize the distribution of classes (Higgs vs. Gamma).
 
 2. **Data Preprocessing**:
    - The features are standardized using `StandardScaler` to improve model performance.
@@ -49,25 +49,37 @@ The dataset contains the following columns:
    - Once the best model is identified, learning curves are generated to visualize the training and cross-validation accuracy as a function of the training size.
    - This helps to analyze model performance across different sizes of the training dataset and understand convergence.
 
-## Code Overview
+## Result Table
 
-The code is organized into the following steps:
+After performing the random grid search for each sample (with 10 different splits of the data), the following result table is generated:
 
-- **Data Loading**: 
-   - Data is fetched from a URL and processed.
+| Sample | Best Accuracy | Best Kernel | Best Nu (C) | Best Epsilon (Gamma) |
+|--------|---------------|-------------|-------------|----------------------|
+| 1      | 0.98          | rbf         | 0.67        | 0.45                 |
+| 2      | 0.97          | linear      | 0.32        | 0.14                 |
+| 3      | 0.96          | poly        | 0.58        | 0.21                 |
+| 4      | 0.95          | sigmoid     | 0.82        | 0.38                 |
+| ...    | ...           | ...         | ...         | ...                  |
+
+- **Best Accuracy**: The highest accuracy achieved for each sample based on the random grid search.
+- **Best Kernel**: The kernel type that provided the best performance (linear, polynomial, radial basis function (RBF), or sigmoid).
+- **Best Nu (C)**: The value of the regularization parameter `C` that provided the best performance.
+- **Best Epsilon (Gamma)**: The value of the kernel coefficient `gamma` that provided the best performance.
+
+## Result Graph: Learning Curves
+
+After identifying the best kernel, `C`, and `gamma`, learning curves are generated to visualize how the model's accuracy evolves with different training set sizes. The graph compares the training score and cross-validation score to show whether the model is overfitting or underfitting as the training data size increases.
+
+The learning curve graph generated looks like this:
+
+![Learning Curve](learning_curve_example.png)
+
+- **X-axis**: Training Size (Percentage of the dataset used for training).
+- **Y-axis**: Accuracy.
+- **Training Score**: Accuracy of the model on the training dataset.
+- **Cross-Validation Score**: Accuracy of the model on the validation dataset (held-out data).
   
-- **Data Preprocessing**: 
-   - The features are scaled using `StandardScaler` for uniformity in training.
-  
-- **Model Training**: 
-   - SVM with grid search is used to identify the best kernel and hyperparameters.
-
-- **Learning Curve Visualization**: 
-   - Learning curves are plotted to show how accuracy changes with different training sizes.
-
-## Results
-
-The model will output the best kernel, `C`, and `gamma` for each split of the data. Additionally, a learning curve plot for the best configuration will be displayed, showing how the model's accuracy improves with increasing training size.
+The plot helps identify the point at which the model starts to converge, ensuring the optimal model training size is chosen for the best generalization.
 
 ## Example Output
 
@@ -79,9 +91,8 @@ Sample 2 | Accuracy: 0.97, Kernel: linear, Nu: 0.32, Epsilon: 0.14
 ...
 ```
 
-A learning curve graph is plotted for the best model, showing training accuracy and cross-validation accuracy.
+A learning curve graph for the best configuration will also be plotted, showing training accuracy and cross-validation accuracy.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
