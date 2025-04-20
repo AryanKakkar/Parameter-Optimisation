@@ -1,7 +1,3 @@
-Here is a sample README file for your project:
-
----
-
 # SVM Classifier with Grid Search and Learning Curves
 
 This project implements a Support Vector Machine (SVM) classifier for the Magic Data Set from the UCI repository. The objective is to optimize the model's hyperparameters using random grid search and visualize the learning curve for the best-performing model.
@@ -89,6 +85,3 @@ A learning curve graph is plotted for the best model, showing training accuracy 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-Feel free to modify or add additional details to the README file depending on your project's needs.
