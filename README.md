@@ -70,10 +70,6 @@ After performing the random grid search for each sample (with 10 different split
 
 After identifying the best kernel, `C`, and `gamma`, learning curves are generated to visualize how the model's accuracy evolves with different training set sizes. The graph compares the training score and cross-validation score to show whether the model is overfitting or underfitting as the training data size increases.
 
-The learning curve graph generated looks like this:
-
-![Learning Curve](learning_curve_example.png)
-
 - **X-axis**: Training Size (Percentage of the dataset used for training).
 - **Y-axis**: Accuracy.
 - **Training Score**: Accuracy of the model on the training dataset.
